@@ -13,18 +13,6 @@ public class Main {
         UserRepositoryImpl userRepository = new UserRepositoryImpl();
        UserService userService = new UserService(userRepository);
 
-//       userService.createUser(new User("Al", "Villi", "Apple"));
-//        userRepository.createUser(new User("Nancy", "Samerson", "Apple"));
-//        userService.removeUser(2);
-        /*
-        userService.update(2, User.builder()
-                .lastName("Edward")
-                .firstName("Hopkins")
-                .companyName("GMC")
-                .build());
-*/
-//        System.out.println(userService.readAllUsers());
-
         User userAl = User.builder()
                 .firstName("Al")
                 .lastName("Unnamed")

@@ -14,9 +14,7 @@ public class UserRepositoryImpl implements UserRepositoryIT {
     private Transaction transaction;
 
     public void createUser(User user) {
-        Session session = null;
-        try {
-            session = new SessionFactoryImpl().getSession().getSessionFactory().openSession();
+        try (Session session = new SessionFactoryImpl().getSession().getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.persist(user);
             transaction.commit();
