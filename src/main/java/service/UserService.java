@@ -27,7 +27,7 @@ public class UserService {
 
     public User update(Integer id, User updateWith) {
         if (repository.getById(id).isEmpty()){
-            throw new IllegalStateException("Such user with id = " + id +"doesn't exist");
+            throw new IllegalStateException("Such user with id = " + id + "doesn't exist");
         }
         return repository.update(id, updateWith);
     }

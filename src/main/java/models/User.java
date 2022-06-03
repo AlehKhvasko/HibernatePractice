@@ -4,13 +4,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Objects;
+import java.util.Set;
 
+@Builder
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-@Table(name = "user_db")
+@Table(name = "user")
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -26,6 +29,10 @@ public class User {
 
     @Column(name = "company_name")
     private String companyName;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private Set<Passport> passports;
 
     public User(String firstName, String lastName, String companyName) {
         this.firstName = firstName;
