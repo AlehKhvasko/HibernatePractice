@@ -9,6 +9,8 @@ import repository.UserRepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import static org.mockito.Mockito.*;
 
 class UserServiceTest {
@@ -62,6 +64,13 @@ class UserServiceTest {
 
     @Test
     void getById() {
+        //given
+        Optional<User> user = Optional.of(getUserAnn());
+        //when
+        when(userRepository.getById(any())).thenReturn(user);
+        User result = userService.getById(1);
+        //then
+        assertEquals(user.get(), result);
     }
 
     @Test
