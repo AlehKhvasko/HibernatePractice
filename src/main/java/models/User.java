@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@Table(name = "user")
+@Table(name = "user_list")
 @AllArgsConstructor
 public class User {
 
@@ -31,7 +31,7 @@ public class User {
     private String companyName;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_list_id")
     private Set<Passport> passports;
 
     public User(String firstName, String lastName, String companyName) {
