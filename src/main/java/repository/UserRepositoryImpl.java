@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import utils.SessionFactoryImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserRepositoryImpl implements UserRepositoryIT {
     private Transaction transaction;
@@ -15,14 +16,10 @@ public class UserRepositoryImpl implements UserRepositoryIT {
             transaction = session.beginTransaction();
             session.persist(user);
             transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
         }
     }
 
-    public List readAllUsers() {
+    public List<User> readAllUsers() {
         List<User> listOfUsers;
         try (Session session = new SessionFactoryImpl().getSession().getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
@@ -32,11 +29,11 @@ public class UserRepositoryImpl implements UserRepositoryIT {
         return listOfUsers;
     }
 
-    public User getById(Integer id) {
-        User user;
+    public Optional<User> getById(Integer id) {
+        Optional<User> user;
         try (Session session = new SessionFactoryImpl().getSession().getSessionFactory().openSession()) {
             session.beginTransaction();
-            user = session.get(User.class, id);
+            user = Optional.of(session.get(User.class, id));
             session.getTransaction().commit();
         }
         return user;

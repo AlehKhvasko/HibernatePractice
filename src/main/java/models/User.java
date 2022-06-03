@@ -3,13 +3,14 @@ package models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Objects;
+
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
-@Table(name = "user")
+@Table(name = "user_db")
 public class User {
 
     @Id
@@ -30,6 +31,19 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.companyName = companyName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(companyName, user.companyName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, companyName);
     }
 }
 

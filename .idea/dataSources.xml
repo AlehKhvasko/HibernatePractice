@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="user@localhost" uuid="e40cad69-77ba-41ff-ac39-b0f5083c3edc">
-      <driver-ref>mariadb</driver-ref>
+    <data-source source="LOCAL" name="postgres@localhost" uuid="bb1210d5-b516-4df8-a5fb-e20bae8374d9">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://localhost:3306</jdbc-url>
-      <jdbc-additional-properties>
-        <property name="APPROVED_DRIVER" value="mariadb" />
-      </jdbc-additional-properties>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

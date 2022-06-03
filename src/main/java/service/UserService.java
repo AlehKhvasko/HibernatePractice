@@ -2,10 +2,8 @@ package service;
 
 import models.User;
 import repository.UserRepositoryIT;
-import repository.UserRepositoryImpl;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UserService {
     private final UserRepositoryIT repository;
@@ -15,35 +13,27 @@ public class UserService {
     }
 
     public void createUser(User user) {
-        
-        //TODO nullable doesnt work on objects?
-        Optional.ofNullable(user).orElseThrow(NullPointerException::new);
         repository.createUser(user);
     }
 
-    public List readAllUsers() {
+    public List<User> readAllUsers() {
         return repository.readAllUsers();
     }
 
     public User getById(Integer id) {
-        boolean exists = Optional.ofNullable(repository.getById(id)).isEmpty();
-        if (!exists){
-            throw new IllegalStateException("Such user with id = " + id + "doesn't exist");
-        }
-        return repository.getById(id);
+        return repository.getById(id)
+                .orElseThrow(()-> new IllegalStateException("Such user with id = " + id + "doesn't exist"));
     }
 
-    public User update(Integer id, User user) {
-        boolean exists = Optional.ofNullable(repository.getById(id)).isEmpty();
-        if (!exists){
+    public User update(Integer id, User updateWith) {
+        if (repository.getById(id).isEmpty()){
             throw new IllegalStateException("Such user with id = " + id +"doesn't exist");
         }
-        return repository.update(id, user);
+        return repository.update(id, updateWith);
     }
 
     public void removeUser(Integer id) {
-        boolean exists = Optional.ofNullable(repository.getById(id)).isEmpty();
-        if (!exists){
+        if (repository.getById(id).isEmpty()){
             throw new IllegalStateException("Such user with id = " + id +"doesn't exist");
         }
         repository.removeUser(id);

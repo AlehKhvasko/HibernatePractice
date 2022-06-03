@@ -14,7 +14,6 @@ public class SessionFactoryImpl {
     public SessionFactoryImpl(){
             sessionFactoryUtil = new Configuration()
                     .configure("hibernate.cfg.xml")
-                    .addAnnotatedClass(User.class)
                     .buildSessionFactory();
             session = sessionFactoryUtil.getCurrentSession();
     }
