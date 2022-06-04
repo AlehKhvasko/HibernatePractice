@@ -42,16 +42,23 @@ class UserServiceTest {
     }
 
     @Test
-    void createUser() {
+    void create_createsUser_whenInputIsCorrect() {
         //given
         //when
         userService.createUser(any());
         //then
         verify(userRepository, times(1)).createUser(any());
     }
+    @Test
+    void create_throwsException_whenInputIsIncorrect() {
+        //given
+        //when
+        //then
+        assertThrows(IllegalStateException.class, ()-> userService.createUser(null));
+    }
 
     @Test
-    void readAllUsers() {
+    void readAllUsers_returnUserList_whenIsNotEmpty() {
         //given
         List<User> userList = new ArrayList<>();
         userList.add(getUserAl());

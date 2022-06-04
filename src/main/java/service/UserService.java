@@ -13,6 +13,9 @@ public class UserService {
     }
 
     public void createUser(User user) {
+        if (user == null){
+            throw new IllegalStateException("please provide user");
+        }
         repository.createUser(user);
     }
 
